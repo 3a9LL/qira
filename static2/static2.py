@@ -159,11 +159,12 @@ class Static:
 
   # this should be replaced with a 
   def set_name(self, address, name):
-    if name not in self.rnames:
-      self.rnames[name] = address
-    elif address != self.rnames[name]:
+    while True:
+      if name not in self.rnames:
+        self.rnames[name] = address
+      elif address != self.rnames[name]:
       # add underscore if name already exists
-      return self.set_name(address, name+"_")
+        name = name+"_"
     return name
 
   def _auto_update_name(self, address, name):
